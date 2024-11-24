@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  maven:
+    image: maven:3.8.5-openjdk-11
+    container_name: maven
+    volumes:
+      - ./maven_project:/usr/src/app
+      - ./maven_repo:/root/.m2
+    working_dir: /usr/src/app
+    networks:
+      - maven-network
+
+networks:
+  maven-network:
+    driver: bridge

@@ -1,7 +1,18 @@
 version: '3.8'
 
 services:
-  
+
+    jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+    networks:
+      - jenkins-network
+
   apache-server:
     image: httpd:alpine
     container_name: apache-server
@@ -50,4 +61,6 @@ services:
 
 networks:
   my-network:
+    driver: bridge
+  jenkins-network:
     driver: bridge

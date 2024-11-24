@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  nginx-server:
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    ports:
+      - "8083:80"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge

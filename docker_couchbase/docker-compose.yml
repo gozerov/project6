@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  couchbase:
+    image: couchbase
+    container_name: couchbase
+    ports:
+      - "8091-8094:8091-8094"
+      - "11210:11210"
+    environment:
+      CB_USERNAME: admin
+      CB_PASSWORD: password
+    volumes:
+      - ./couchbase_data:/opt/couchbase/var
+    networks:
+      - couchbase-network
+
+networks:
+  couchbase-network:
+    driver: bridge
